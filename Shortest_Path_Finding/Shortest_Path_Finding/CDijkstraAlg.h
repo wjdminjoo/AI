@@ -20,7 +20,7 @@ public:
 	CDijkstraAlg(CGameMap* map) :_gameMap(map), _IsFound(false) {};
 
 	// ref วüลย, Extract Min - Get a Node
-	void choiceNode(point &choisNode); 
+	void choiceNode(point &choisNode, int dX, int dY); 
 
 	// find a shortest path s = start, d = destination
 	bool findPath(int sx, int sy, int dx, int dy); 

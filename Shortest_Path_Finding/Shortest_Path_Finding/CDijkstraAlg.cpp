@@ -12,8 +12,35 @@ CDijkstraAlg::~CDijkstraAlg()
 {
 }
 
-void CDijkstraAlg::choiceNode(point & choisNode)
+void CDijkstraAlg::choiceNode(point & choisNode, int dX, int dY)
 {
+
+	// 다익스트라 AL
+	//int _max = INT_MAX;
+
+	//int _width = _gameMap->getWidth();
+	//int _height = _gameMap->getHeight();
+
+
+	//int _cx, _cy;
+
+	//// Select the node with the smallest weight among the uninvited nodes that are connected to the visited node
+	//std::list<point>::reverse_iterator _curPos;
+	//for (_curPos = _VisitNode.rbegin(); _curPos != _VisitNode.rend(); _curPos++) {
+	//	for (int _ty = -1; _ty <= 1; _ty++) {
+	//		for (int _tx = -1; _tx <= 1; _tx++) {
+	//			_cx = _curPos->x + _tx;
+	//			_cy = _curPos->y + _ty;
+	//			if (_cx < 0 || _cx > _width - 1 || _cy < 0 || _cy > _height - 1 || (_tx == 0 && _ty == 0)) continue;
+	//			if (_gameMap->getMapVal(_cx, _cy) < _max && _gameMap->getIsVisit(_cx, _cy) == false) {
+	//				_max = _gameMap->getMapVal(_cx, _cy);
+	//				choisNode = { _cx, _cy };
+	//			}
+	//		}
+	//	}
+	//}
+
+	// Astar AL
 	int _max = INT_MAX;
 
 	int _width = _gameMap->getWidth();
@@ -30,6 +57,9 @@ void CDijkstraAlg::choiceNode(point & choisNode)
 				_cx = _curPos->x + _tx;
 				_cy = _curPos->y + _ty;
 				if (_cx < 0 || _cx > _width - 1 || _cy < 0 || _cy > _height - 1 || (_tx == 0 && _ty == 0)) continue;
+				auto difdX = abs(_cx - dX);
+				auto difdY = abs(_cy - dY);
+				auto h = (difdX + difdY) * 10;
 				if (_gameMap->getMapVal(_cx, _cy) < _max && _gameMap->getIsVisit(_cx, _cy) == false) {
 					_max = _gameMap->getMapVal(_cx, _cy);
 					choisNode = { _cx, _cy };
@@ -61,7 +91,7 @@ bool CDijkstraAlg::findPath(int sx, int sy, int dx, int dy)
 	_parent[sy][sx] = _choiceNode;
 
 	for (int i = 0; i < _width * _height; i++) {
-		choiceNode(_choiceNode);
+		choiceNode(_choiceNode, dx, dy);
 		_gameMap->setIsVisit(_choiceNode.x, _choiceNode.y, true);
 		_VisitNode.push_back(_choiceNode);
 		if (_choiceNode.x == dx && _choiceNode.y == dy) {
