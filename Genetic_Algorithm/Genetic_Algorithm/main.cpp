@@ -7,19 +7,19 @@ int main() {
 	
 	srand((unsigned)time(NULL));
 
-	// 5자리의 chromosome이 10개.
+	// 5자리의 chromosome이 4개.
 	// 70%의 크로스 오버, 0.01의 적합도
-	CPopulation simpleGA(30, 20, 0.8, 0.01);
+	CPopulation simpleGA(20, 20, 0.9, 0.5);
 	CChromosome bestChrom = simpleGA.getBestChromosome();
-	int bestFitness = bestChrom.getFitness();
+	int bestFitness = 0;//bestChrom.getFitness();
 	int popSize = simpleGA.getPopSizse();
 
 	int generation = 0;
-	int solution = simpleGA.getChromSize();
+	int solution = 30; // simpleGA.getChromSize();
 
 	double crossoverRate = simpleGA.getCrossoverRate();
 
-	simpleGA.draw();
+	//simpleGA.draw();
 
 
 	// processing Genetic Algorithm
@@ -27,14 +27,15 @@ int main() {
 	while (1) {
 		generation++;
 
-		std::cout << "==================================\n";
-		std::cout << "Generation : " << generation << "\n";
-		simpleGA.draw();
+		//std::cout << "==================================\n";
+		//std::cout << "Generation : " << generation << "\n";
+		//simpleGA.draw();
 		std::cout << "BEST : ";
 		bestChrom.draw();
 
 		if (bestFitness == solution) break;
 		int chromSize = simpleGA.getChromSize();
+
 		CChromosome select1(chromSize);
 		CChromosome select2(chromSize);
 

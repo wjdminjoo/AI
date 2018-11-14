@@ -14,7 +14,7 @@ class CPopulation
 
 public:
 	CPopulation(int pSize, int cSize, double cR, double mR);
-	~CPopulation();
+	~CPopulation() {}
 
 	CChromosome selection();
 	void crossover(CChromosome &chrom1, CChromosome &chrom2);

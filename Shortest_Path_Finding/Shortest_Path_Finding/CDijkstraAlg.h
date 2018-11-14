@@ -17,7 +17,7 @@ class CDijkstraAlg
 public:
 	CDijkstraAlg();
 	~CDijkstraAlg();
-	CDijkstraAlg(CGameMap* map) :_gameMap(map), _IsFound(false) {};
+	CDijkstraAlg(CGameMap* map) :_gameMap(map), _IsFound(false) {}
 
 	// ref วüลย, Extract Min - Get a Node
 	void choiceNode(point &choisNode, int dX, int dY); 

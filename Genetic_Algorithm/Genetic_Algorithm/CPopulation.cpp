@@ -14,9 +14,6 @@ CPopulation::CPopulation(int pSize, int cSize, double cR, double mR) :
 	copyPopToParent();
 }
 
-CPopulation::~CPopulation()
-{
-}
 
 // rouleette wheel method
 CChromosome CPopulation::selection()
@@ -77,7 +74,7 @@ void CPopulation::evaluation()
 	for (int i = 0; i < _popSize; i++) {
 		_population[i].calcFitness(); // calc ith chromosome in the pop
 		int curFit = _population[i].getFitness();
-		if (curFit > bestFit) {
+		if (abs(curFit - 30) < abs(bestFit - 30)) {
 			bestFit = curFit;
 			bestChromosomIndex = i;
 		}

@@ -9,7 +9,7 @@ class CChromosome
 
 public:
 	CChromosome();
-	~CChromosome();
+	~CChromosome() {}
 	CChromosome(int size);
 
 	void resetChromosome(int size);
@@ -24,6 +24,10 @@ public:
 
 	std::vector<int> getChromosome() { return _genes; }
 	void setChromosome(std::vector<int> genes) { _genes = genes; }
+
+	int decoding();
+
+	int trans(int* num);
 
 	void draw();
 };

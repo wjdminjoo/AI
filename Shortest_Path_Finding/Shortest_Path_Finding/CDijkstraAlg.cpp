@@ -46,7 +46,6 @@ void CDijkstraAlg::choiceNode(point & choisNode, int dX, int dY)
 	int _width = _gameMap->getWidth();
 	int _height = _gameMap->getHeight();
 
-
 	int _cx, _cy;
 
 	// Select the node with the smallest weight among the uninvited nodes that are connected to the visited node
@@ -72,14 +71,15 @@ void CDijkstraAlg::choiceNode(point & choisNode, int dX, int dY)
 bool CDijkstraAlg::findPath(int sx, int sy, int dx, int dy)
 {
 	_IsFound = false;
+
 	int _width = _gameMap->getWidth();
 	int _height = _gameMap->getHeight();
 
 	// each Node parent Info Save.
-	point **_parent; 
+	point **_parent;
 
 	_parent = new point*[_height];
-	for (int i = 0; i < _width; i++) 
+	for (int i = 0; i < _height; i++) 
 		_parent[i] = new point[_width];
 
 	// V - S Node. Than smaller.
@@ -94,17 +94,18 @@ bool CDijkstraAlg::findPath(int sx, int sy, int dx, int dy)
 		choiceNode(_choiceNode, dx, dy);
 		_gameMap->setIsVisit(_choiceNode.x, _choiceNode.y, true);
 		_VisitNode.push_back(_choiceNode);
+
+		// Destination Visit.
 		if (_choiceNode.x == dx && _choiceNode.y == dy) {
-			// Destination Visit.
 			_IsFound = true;
 			break;
 		}
 
 		// near Node Edge Relax
-		for (int ty = -1; ty <= 1; ty++) {
-			for (int tx = -1; tx <= 1; tx++) {
-				int _nextX = _choiceNode.x + tx;
-				int _nextY = _choiceNode.y + ty;
+		for (int _ty = -1; _ty <= 1; _ty++) {
+			for (int _tx = -1; _tx <= 1; _tx++) {
+				int _nextX = _choiceNode.x + _tx;
+				int _nextY = _choiceNode.y + _ty;
 
 				int _dist;
 				// out of Range
@@ -112,12 +113,12 @@ bool CDijkstraAlg::findPath(int sx, int sy, int dx, int dy)
 					continue;
 				// Edge Relax
 				if (_gameMap->getIsVisit(_nextX, _nextY) == false) {
-					_dist = (tx == 0 || ty == 0) ? 10 : 14;
+					_dist = (_tx == 0 || _ty == 0) ? 10 : 14;
 
 					if (_gameMap->getMapVal(_choiceNode.x, _choiceNode.y) + _dist < _gameMap->getMapVal(_nextX, _nextY)) {
 						int _newVal = _gameMap->getMapVal(_choiceNode.x, _choiceNode.y) + _dist;
 						_gameMap->setMapVal(_nextX, _nextY, _newVal);
-						_parent[_nextX][_nextY] = _choiceNode;
+						_parent[_nextY][_nextX] = _choiceNode;
 					}
 				}
 			}
@@ -143,11 +144,11 @@ void CDijkstraAlg::draw()
 	if (_IsFound) {
 		point _curNode;
 
-		while (!_path.empty()){
+		do{
 			_curNode = _path.top();
 			std::cout << "(" << _curNode.x << ", " << _curNode.y << ") ==> ";
 			_path.pop();
-		}
+		} while (!_path.empty());
 
 		std::cout << "CONGRATULATION YOU FOUND THE SHORTEST PATH \n";
 	}

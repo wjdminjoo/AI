@@ -1,3 +1,9 @@
+<<<<<<< Updated upstream
 ﻿  CDijkstraAlg.cpp
   LINK : C:\Users\wjdmi\AI\Shortest_Path_Finding\Debug\Shortest_Path_Finding.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
   Shortest_Path_Finding.vcxproj -> C:\Users\wjdmi\AI\Shortest_Path_Finding\Debug\Shortest_Path_Finding.exe
+=======
+﻿  main.cpp
+c:\users\wjdminjoo\ai\shortest_path_finding\shortest_path_finding\main.cpp(4): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+  Shortest_Path_Finding.vcxproj -> C:\Users\wjdminjoo\AI\Shortest_Path_Finding\Debug\Shortest_Path_Finding.exe
+>>>>>>> Stashed changes
